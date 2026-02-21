@@ -1,0 +1,72 @@
+/* account.css */
+.profile-card {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.profile-image-container {
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-item label {
+    display: block;
+    color: #6c757d;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    color: #212529;
+}
+
+.btn-delete {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Delete Page Styling */
+#deletePage .delete-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+}
+
+#deletePage .btn-danger {
+    background-color: #ff4d4d;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#deletePage .btn-danger:hover {
+    background-color: #ff3333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 77, 77, 0.4);
+}
+
+#deletePage .text-muted {
+    color: #999 !important;
+    line-height: 1.6;
+}
+
+/* Optional: Animation for the warning icon */
+.warning-icon i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}

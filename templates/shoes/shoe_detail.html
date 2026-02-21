@@ -1,0 +1,164 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ shoe.get_brand_display }} {{ shoe.model }}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/shoe_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+    <div class="card shadow-lg mb-5 shoe-card">
+        <div class="row g-0">
+
+            <div class="col-md-4">
+                {% if shoe.image %}
+                    <img src="{{ shoe.image.url }}"
+                         class="img-fluid rounded-start h-100 object-fit-cover"
+                         alt="{{ shoe.get_brand_display }} {{ shoe.model }}">
+                {% else %}
+                    <div class="no-image d-flex align-items-center justify-content-center">
+                        No Image Available
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body">
+
+                    <h2 class="card-title mb-3">
+                        {{ shoe.get_brand_display }} {{ shoe.model }}
+                    </h2>
+
+                    <div class="mb-3">
+                        {% if shoe.is_available %}
+                            <span class="badge bg-success me-2">In Stock</span>
+                        {% else %}
+                            <span class="badge bg-danger me-2">Out of Stock</span>
+                        {% endif %}
+
+                        {% for category in shoe.categories.all %}
+                            <span class="badge bg-secondary me-1">
+                                {{ category.sport }}
+                            </span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col mb-3">
+                        <div class="col-sm-6"><strong>Size:</strong> {{ shoe.size }}</div>
+                        <div class="col-sm-6"><strong>Color:</strong> {{ shoe.color }}</div>
+                        <div class="col-sm-6"><strong>Gender:</strong> {{ shoe.get_gender_display }}</div>
+                    </div>
+
+                    <p class="price">
+                        <strong>Price:</strong>
+                        ${{ shoe.price }}
+                    </p>
+
+                    {% if average_rating != "N/A" %}
+                        <p>
+                            <strong>Average Rating:</strong>
+                            <span class="badge bg-success">
+                                {{ average_rating|floatformat:1 }} / 5
+                            </span>
+                        </p>
+                    {% else %}
+                        <p class="text-muted">No ratings yet.</p>
+                    {% endif %}
+                    <form action="{% url 'common:like' shoe.pk %}" method="post" class="my-3">
+                        {% csrf_token %}
+                        {% if is_liked %}
+                            <button type="submit" class="btn btn-danger rounded-pill px-4">
+                                ❤️ Liked
+                            </button>
+                        {% else %}
+                            <button type="submit" class="btn btn-outline-danger rounded-pill px-4">
+                                🤍 Like
+                            </button>
+                        {% endif %}
+                    </form>
+                    <p class="description">
+                        <strong>Description:</strong>
+                        <span class="description-text">{{ shoe.description }}</span>
+                    </p>
+
+                    <div class="mt-4 d-flex gap-2 flex-wrap">
+
+                        <a href="{% url 'shoes:shoe-edit' shoe.slug %}"
+                           class="btn btn-warning rounded-pill px-4">
+                            Edit Shoe
+                        </a>
+                    
+                        <a href="{% url 'shoes:shoe-delete' shoe.slug %}"
+                           class="btn btn-outline-danger rounded-pill px-4">
+                            Delete Shoe
+                        </a>
+                    
+                        <a href="{% url 'common:home' %}"
+                           class="btn btn-outline-secondary rounded-pill px-4">
+                            Back
+                        </a>
+                    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mb-4">Reviews</h3>
+
+   <div class="row">
+        {% for review in reviews %}
+            <div class="col-md-6 mb-4">
+                <a href="{% url 'reviews:detail' review.pk %}" 
+                   class="text-decoration-none text-dark">
+    
+                    <div class="card h-100 shadow-sm review-card">
+                        <div class="card-body">
+    
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-info text-dark">
+                                    Rating: {{ review.rating|floatformat:1 }} / 5
+                                </span>
+                                <small class="text-muted">
+                                    by {{ review.author_name }}
+                                </small>
+                            </div>
+    
+                            <p class="card-text">
+                                {{ review.body|truncatechars:150 }}
+                            </p>
+    
+                            <small class="text-muted">
+                                {{ review.created_at|date:"F j, Y, g:i a" }}
+                            </small>
+    
+                            {% if review.is_verified %}
+                                <div class="mt-2">
+                                    <span class="badge bg-success">
+                                        Verified Purchase
+                                    </span>
+                                </div>
+                            {% endif %}
+    
+                        </div>
+                    </div>
+    
+                </a>
+            </div>
+        {% empty %}
+            <div class="col">
+                <div class="alert alert-light text-center">
+                    No reviews for this shoe yet.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

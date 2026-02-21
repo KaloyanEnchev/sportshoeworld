@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+
+    <!-- Link External CSS -->
+    <link rel="stylesheet" href="{% static 'css/404.css' %}">
+    <!-- Optional Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="error-code">404</h1>
+        <div class="ghost-container">
+            <div class="ghost"></div>
+        </div>
+        <h2>Oops! Page not found.</h2>
+        <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+        <a href="/" class="home-btn">Back to Homepage</a>
+    </div>
+</body>
+</html>

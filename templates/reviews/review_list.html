@@ -1,0 +1,77 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="reviews-container">
+    <form method="get" class="search-form centered-search">
+        <input type="text" name="search" placeholder="Search by brand…" value="{{ request.GET.search }}">
+        {% if request.GET.type %}
+            <input type="hidden" name="type" value="{{ request.GET.type }}">
+        {% endif %}
+        <button type="submit">Search</button>
+    </form>
+    <header class="reviews-header">
+        <div class="header-text">
+            <h1>Shoe Reviews</h1>
+            <p>Read what the community thinks about the latest drops.</p>
+        </div>
+        <a href="{% url 'reviews:create' %}" class="btn-create">
+            <span class="icon">+</span> Create Review
+        </a>
+    </header>
+
+    <div class="reviews-grid">
+        {% for review in page_obj %}
+        <a href="{% url 'reviews:detail' review.pk %}" class="review-card-anchor">
+            <article class="review-card">
+                <div class="card-badge-row">
+                    <span class="badge type-{{ review.review_type|lower }}">
+                        {{ review.review_type }}
+                    </span>
+                    <div class="rating-pill">
+                        ★ {{ review.rating }}
+                    </div>
+                </div>
+                
+                <div class="card-main">
+                    <small class="label">REVIEW FOR</small>
+                    <h2 class="shoe-title">{{ review.shoe.brand }} {{ review.shoe.model }}</h2>
+                    <p class="author">By <span>{{ review.author_name }}</span></p>
+                    <div class="body-preview">
+                        {{ review.body|truncatechars:100 }}
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <span class="date">{{ review.created_at|date:"d M Y" }}</span>
+                </div>
+            </article>
+        </a>
+        {% empty %}
+        <div class="empty-state">
+            <p>No verified reviews available yet. Be the first to write one!</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+        <nav class="pagination-wrapper">
+            {% with request.GET.urlencode as query_params %}
+                {% if page_obj.has_previous %}
+                    <a href="?{% if query_params %}{{ query_params }}&{% endif %}page={{ page_obj.previous_page_number }}" class="page-link">← Prev</a>
+                {% endif %}
+                
+                <span class="current-page">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                
+                {% if page_obj.has_next %}
+                    <a href="?{% if query_params %}{{ query_params }}&{% endif %}page={{ page_obj.next_page_number }}" class="page-link">Next →</a>
+                {% endif %}
+            {% endwith %}
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}

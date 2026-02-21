@@ -1,0 +1,61 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/reviews.css' %}" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block content %}
+<div class="reviews-container">
+
+    <nav class="breadcrumb">
+        <a href="{% url 'reviews:list' %}"><strong>← All Reviews</strong></a>
+    </nav>
+
+    <article class="detail-card">
+
+        <header class="detail-header">
+            <div>
+                <span class="badge type-{{ review.review_type|lower }}">
+                    {{ review.review_type }}
+                </span>
+
+                <h1 class="shoe-title">
+                    <a href="{% url 'shoes:shoe-detail' review.shoe.slug %}">
+                        {{ review.shoe.brand}} {{ review.shoe.model }}
+                    </a>
+                </h1>
+
+                <p class="author-info">
+                    Reviewed by <strong>{{ review.author_name }}</strong>
+                    on {{ review.created_at|date:"F j, Y" }}
+                </p>
+            </div>
+
+            <div class="detail-rating">
+                ★ {{ review.rating }}/5
+            </div>
+        </header>
+
+        <hr>
+
+        <section class="review-body">
+            {{ review.body|linebreaks }}
+        </section>
+        
+        <div class="mt-4 d-flex gap-2 flex-wrap">
+
+            <a href="{% url 'reviews:edit' review.pk %}"
+               class="btn btn-warning rounded-pill px-4">
+                Edit Review
+            </a>
+                    
+            <a href="{% url 'reviews:delete' review.pk %}"
+               class="btn btn-outline-danger rounded-pill px-4">
+                Delete Review
+            </a>
+        </div>    
+
+    </article>
+</div>
+{% endblock %}

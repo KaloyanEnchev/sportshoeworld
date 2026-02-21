@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4">Delete Review</h1>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group mb-4">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'reviews:detail' review.pk %}" class="btn btn-secondary">Cancel</a>
+        </form> 
+    </div>
+{% endblock %}

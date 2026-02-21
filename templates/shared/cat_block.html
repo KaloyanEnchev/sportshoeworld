@@ -1,0 +1,26 @@
+{% load static %}
+
+{% block category %}
+    <section class="home-section">
+        <h2 class="section-title">Choose a category</h2>
+        <nav class="category-pills">
+    
+            <a href="{% url 'shoes:basketball-list' %}" class="pill">
+                Basketball
+            </a>
+    
+            <a href="{% url 'shoes:football-list' %}" class="pill">
+                Football
+            </a>
+    
+            <a href="{% url 'shoes:volleyball-list' %}" class="pill">
+                Volleyball
+            </a>
+    
+            <a href="{% url 'shoes:handball-list' %}" class="pill">
+                Handball
+            </a>
+    
+        </nav>
+    </section>
+{% endblock %}

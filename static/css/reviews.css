@@ -1,0 +1,268 @@
+/* Container & Header */
+.reviews-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+.reviews-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #1a1a1a;
+}
+
+.btn-create {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-create:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* Grid Logic */
+.reviews-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.review-card-anchor {
+    display: block;
+    width: 100%;
+}
+
+.review-card-anchor {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Card Styling */
+.review-card {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 12px;
+    padding: 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.review-card:hover {
+    border-color: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Badges */
+.card-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.type-text { background: #e3f2fd; color: #1976d2; }
+.type-video { background: #fce4ec; color: #c2185b; }
+.type-audio { background: #f3e5f5; color: #7b1fa2; }
+
+.rating-pill {
+    font-weight: 700;
+    color: #ffa000;
+    background: #fff8e1;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Content */
+.label {
+    color: #999;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.shoe-title {
+    margin: 5px 0;
+    font-size: 1.4rem;
+}
+
+.author {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.author span {
+    color: #000;
+    font-weight: 600;
+}
+
+.body-preview {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+/* Footer */
+.card-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.link-text {
+    font-weight: 700;
+    color: #000;
+}
+
+/* Pagination */
+.pagination-wrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+/* Center the search form */
+.centered-search {
+    display: flex;
+    justify-content: center;   /* horizontally center */
+    align-items: center;       /* vertically align input + button */
+    margin: 1.5rem 0;          /* spacing from header/content */
+    gap: 0.5rem;               /* space between input and button */
+}
+
+/* Style the input */
+.centered-search input[type="text"] {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;       /* pill shape */
+    border: 1px solid #ccc;
+    width: 250px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.centered-search input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Style the button */
+.centered-search button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;       /* pill shape */
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.centered-search button:hover {
+    background-color: #0056b3;
+}
+
+/* Container */
+.reviews-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Back link */
+.breadcrumb a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Card */
+.detail-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+}
+
+/* Header layout */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 20px;
+    background: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+/* Shoe title */
+.shoe-title a {
+    text-decoration: none;
+    color: #111;
+}
+
+.shoe-title a:hover {
+    color: #007bff;
+}
+
+/* Rating */
+.detail-rating {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Review body */
+.review-body {
+    margin-top: 20px;
+    line-height: 1.6;
+}
