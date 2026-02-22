@@ -1,18 +1,31 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="mt-4">Delete Review</h1>
-        <form method="post" class="mt-4">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group mb-4">
-                    {{ field.label_tag }}
-                    {{ field }}
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-danger">Confirm Delete</button>
-            <a href="{% url 'reviews:detail' review.pk %}" class="btn btn-secondary">Cancel</a>
-        </form> 
-    </div>
+<div class="container my-5">
+    <h1 class="mt-4 text-danger">Delete Review</h1>
+    <p class="text-muted mb-4">
+        Are you sure you want to delete your review for
+        <strong>{{ object.shoe.get_brand_display }} {{ object.shoe.model }}</strong>?
+        This action cannot be undone.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group mb-3">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% endfor %}
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+                Confirm Delete
+            </button>
+            <a href="{% url 'shoes:shoe-detail' object.shoe.slug %}" class="btn btn-secondary">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock %}

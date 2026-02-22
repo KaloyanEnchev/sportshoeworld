@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.db.models import Avg, Count
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse

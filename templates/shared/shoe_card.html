@@ -1,0 +1,19 @@
+<div class="product-grid">
+    {% for shoe in object_list %}
+        <div class="product-card">
+            <div class="product-img-wrapper">
+                {% if shoe.image %}
+                    <img src="{{ shoe.image.url }}" alt="{{ shoe.model }}">
+                {% endif %}
+            </div>
+            <div class="product-details">
+                <h4>{{ shoe.brand }}</h4>
+                <p>{{ shoe.model }}</p>
+                <p class="price-tag">${{ shoe.price }}</p>
+                <a href="{% url 'shoes:shoe-detail' shoe.slug %}" class="btn-outline">
+                    View Details
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

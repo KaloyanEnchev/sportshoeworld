@@ -1,5 +1,6 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load availability_tags %}
 
 {% block title %}
 {{ shoe.get_brand_display }} {{ shoe.model }}
@@ -35,16 +36,10 @@
                     </h2>
 
                     <div class="mb-3">
-                        {% if shoe.is_available %}
-                            <span class="badge bg-success me-2">In Stock</span>
-                        {% else %}
-                            <span class="badge bg-danger me-2">Out of Stock</span>
-                        {% endif %}
+                        {{ shoe.is_available|availability_badge }}
 
                         {% for category in shoe.categories.all %}
-                            <span class="badge bg-secondary me-1">
-                                {{ category.sport }}
-                            </span>
+                            <span class="badge bg-secondary me-1">{{ category.sport }}</span>
                         {% endfor %}
                     </div>
 
@@ -92,17 +87,17 @@
                            class="btn btn-warning rounded-pill px-4">
                             Edit Shoe
                         </a>
-                    
+
                         <a href="{% url 'shoes:shoe-delete' shoe.slug %}"
                            class="btn btn-outline-danger rounded-pill px-4">
                             Delete Shoe
                         </a>
-                    
+
                         <a href="{% url 'common:home' %}"
                            class="btn btn-outline-secondary rounded-pill px-4">
                             Back
                         </a>
-                    
+
                     </div>
 
                 </div>
@@ -115,12 +110,12 @@
    <div class="row">
         {% for review in reviews %}
             <div class="col-md-6 mb-4">
-                <a href="{% url 'reviews:detail' review.pk %}" 
+                <a href="{% url 'reviews:detail' review.pk %}"
                    class="text-decoration-none text-dark">
-    
+
                     <div class="card h-100 shadow-sm review-card">
                         <div class="card-body">
-    
+
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span class="badge bg-info text-dark">
                                     Rating: {{ review.rating|floatformat:1 }} / 5
@@ -129,15 +124,15 @@
                                     by {{ review.author_name }}
                                 </small>
                             </div>
-    
+
                             <p class="card-text">
                                 {{ review.body|truncatechars:150 }}
                             </p>
-    
+
                             <small class="text-muted">
                                 {{ review.created_at|date:"F j, Y, g:i a" }}
                             </small>
-    
+
                             {% if review.is_verified %}
                                 <div class="mt-2">
                                     <span class="badge bg-success">
@@ -145,10 +140,10 @@
                                     </span>
                                 </div>
                             {% endif %}
-    
+
                         </div>
                     </div>
-    
+
                 </a>
             </div>
         {% empty %}

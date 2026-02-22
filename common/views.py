@@ -53,7 +53,3 @@ def like_functionality(request, photo_pk: int) -> HttpResponse:
         )
 
     return redirect(request.META.get('HTTP_REFERER') + f'#{photo_pk}')
-
-
-def custom_404(request, exception):
-    return render(request, '404.html', status=404)

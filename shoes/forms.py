@@ -67,9 +67,3 @@ class ShoeEditForm(ShoeFormBasic):
 
 class ShoeDeleteForm(DisableFormFieldsMixin, ShoeFormBasic):
     ...
-
-class SearchForm(forms.Form):
-    sport = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'Search by sport...'}),
-    )

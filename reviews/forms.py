@@ -45,5 +45,6 @@ class ReviewCreateForm(ReviewForm):
 class ReviewEditForm(ReviewForm):
     ...
 
-class ReviewDeleteForm(ReviewForm, DisableFormFieldsMixin):
-    ...
+class ReviewDeleteForm(DisableFormFieldsMixin, ReviewForm):
+    class Meta(ReviewForm.Meta):
+        exclude = ReviewForm.Meta.exclude + ['shoe']

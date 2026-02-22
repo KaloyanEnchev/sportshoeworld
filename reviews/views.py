@@ -56,7 +56,9 @@ class ReviewDeleteView(DeleteView):
     model = Review
     form_class = ReviewDeleteForm
     template_name = 'reviews/review-delete-page.html'
-    success_url = reverse_lazy("reviews:detail")
+
+    def get_success_url(self):
+        return reverse('shoes:shoe-detail', kwargs={'pk': self.object.pk})
 
     def get_initial(self) -> dict:
         return self.object.__dict__
