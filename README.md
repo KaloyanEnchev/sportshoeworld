@@ -16,6 +16,7 @@ The project demonstrates modular Django architecture, database modeling, and str
 ## Project Structure
 
 SportShoeWorld/
+
 ├── accounts/          # Non-authenticated user accounts
 
 ├── shoes/          # Shoe catalog app
