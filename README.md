@@ -47,7 +47,7 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/KaloyanEnchev/SportShoeWorld.git
+    git clone https://github.com/KaloyanEnchev/sportshoeworld.git
     cd SportShoeWorld
     ```
 
