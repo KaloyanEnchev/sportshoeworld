@@ -24,7 +24,7 @@
                     Yes, Delete My Account
                 </button>
                 
-                <a href="{% url 'accounts:detail' %}" class="btn btn-link text-muted text-decoration-none small">
+                <a href="{% url 'accounts:details' request.user.pk%}" class="btn btn-link text-muted text-decoration-none small">
                     Wait, take me back!
                 </a>
             </form>

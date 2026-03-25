@@ -1,8 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.text import slugify
-
-from accounts.models import Account
 from common.choices import SizeChoices, BrandChoices, GenderChoices
 from common.vaidators import validate_description_length, validate_image_size
 
@@ -36,6 +34,11 @@ class Shoe(models.Model):
     categories = models.ManyToManyField(
         'Category',
         related_name="shoes",
+        blank=True,
+    )
+    tags = models.ManyToManyField(
+        'Tag',
+        related_name='shoes',
         blank=True,
     )
     is_available = models.BooleanField(
@@ -72,9 +75,34 @@ class Shoe(models.Model):
 
 
 class Category(models.Model):
+    class SportChoices(models.TextChoices):
+        FOOTBALL = "football", "Football",
+        VOLLEYBALL = "volleyball", "Volleyball",
+        BASKETBALL = "basketball", "Basketball",
+        HANDBALL = "handball", "Handball",
+
     sport = models.CharField(
         max_length=50,
+        choices = SportChoices.choices,
+        blank=True,
     )
 
     def __str__(self):
-        return self.sport
+        return self.get_sport_display()
+
+class Tag(models.Model):
+    class TagChoices(models.TextChoices):
+        RUNNING = "running", "Running",
+        INDOOR = "indoor", "Indoor",
+        OUTDOOR = "outdoor", "Outdoor",
+        COURT = "court", "Court",
+        LIGHTWEIGHT = "lightweight", "Lightweight",
+
+    name = models.CharField(
+        max_length=50,
+        choices=TagChoices.choices,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.get_name_display()

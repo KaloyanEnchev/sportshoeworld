@@ -1,19 +1,31 @@
 from django import forms
-from accounts.models import Account
+from django.contrib.auth import get_user_model
+from unfold.forms import UserCreationForm, UserChangeForm
+
+from accounts.models import Profile
+
+UserModel = get_user_model()
 
 
-class AccountForm(forms.ModelForm):
+class AppUserCreationForm(UserCreationForm):
     class Meta:
-        model = Account
-        fields = "__all__"
-        widgets = {
-            "username": forms.TextInput(
-                attrs={'placeholder': 'Username'},
-            ),
-            "email": forms.EmailInput(
-                attrs={'placeholder': 'Email'},
-            ),
-            "age": forms.NumberInput(
-                attrs={'placeholder': 'Age'},
-            )
+        model = UserModel
+        fields = ["email"]
+
+
+class AppUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = UserModel
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ["user"]
+
+        labels = {
+            'first_name': "First Name:",
+            'last_name': "Last Name:",
+            'date_of_birth': "Date of Birth:",
+            'profile_picture': "Profile Picture:",
         }

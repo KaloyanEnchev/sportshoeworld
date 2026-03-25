@@ -1,10 +1,27 @@
-from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import path, include
 
 from accounts import views
 
-app_name = 'accounts'
+app_name = "accounts"
+
+# profile_patterns = [
+#     path('', views.ProfileDetailView.as_view(), name='details'),
+#     path('edit/', views.ProfileEditView.as_view(), name='edit'),
+#     path('delete/', views.AccountDeleteView.as_view(), name='delete'),
+# ]
+
+authentication_patterns = [
+    path('register/', views.RegisterAppUserView.as_view(), name='register'),
+    path('login/', LoginView.as_view(
+        template_name='accounts/login-page.html'
+    ), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+]
 
 urlpatterns = [
-    path('', views.AccountDetailView.as_view(), name='detail'),
-    path('delete/', views.AccountDeleteView.as_view(), name='delete')
+    path('', include(authentication_patterns)),
+    path('profile/<int:pk>/', views.ProfileDetailView.as_view(), name='details'),
+    path('profile/<int:pk>/edit/', views.ProfileEditView.as_view(), name='edit'),
+    path('profile/<int:pk>/delete/', views.profile_delete, name='delete'),
 ]

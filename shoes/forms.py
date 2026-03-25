@@ -35,6 +35,9 @@ class ShoeFormBasic(forms.ModelForm):
             'categories': forms.SelectMultiple(attrs={
                 'class': 'form-select'
             }),
+            'tags': forms.SelectMultiple(attrs={
+                'class': 'form-select'
+            }),
             'image': forms.ClearableFileInput(attrs={
                 'class': 'form-control'
             }),

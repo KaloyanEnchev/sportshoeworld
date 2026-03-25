@@ -1,6 +1,7 @@
 from typing import Any
 
 from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic.detail import SingleObjectMixin
 
 
@@ -29,3 +30,7 @@ class SuccessMessageMixin(SingleObjectMixin):
         if self.success_message:
             messages.success(self.request, self.success_message)
         return response
+
+class CheckUserIsOwner(UserPassesTestMixin):
+    def test_func(self) -> bool:
+        return self.request.user == self.get_object().user

@@ -1,11 +1,14 @@
 from shoes import views
 from django.urls import path
 
+from shoes.api_views import ShoeListCreateAPIView, ShoeDetailAPIView
 from shoes.views import ShoeDetailView, ShoeEditView, ShoeDeleteView
 
 app_name = 'shoes'
 
 urlpatterns = [
+    path('api/', ShoeListCreateAPIView.as_view(), name='api-shoes'),
+    path('api/<int:pk>/', ShoeDetailAPIView.as_view(), name='api-shoe-detail'),
     path('create/', views.ShoeCreateView.as_view(), name='create'),
     path('', views.ShoeListView.as_view(), name='list'),
     path('men/', views.MenShoeListView.as_view(), name='men-list'),
