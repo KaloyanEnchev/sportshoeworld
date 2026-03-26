@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
@@ -6,7 +7,7 @@ from reviews.models import Review
 
 
 # Create your views here.
-class ReviewCreateView(CreateView):
+class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     form_class = ReviewForm
     success_url = reverse_lazy('common:home')
@@ -44,7 +45,7 @@ class ReviewDetailView(DetailView):
         ).exclude(pk=self.object.pk)[:3]
         return context
 
-class ReviewEditView(UpdateView):
+class ReviewEditView(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewForm
     template_name = 'reviews/review-edit-page.html'
@@ -52,13 +53,13 @@ class ReviewEditView(UpdateView):
     def get_success_url(self) -> str:
         return reverse('reviews:detail', kwargs={'pk': self.object.pk})
 
-class ReviewDeleteView(DeleteView):
+class ReviewDeleteView(LoginRequiredMixin, DeleteView):
     model = Review
     form_class = ReviewDeleteForm
     template_name = 'reviews/review-delete-page.html'
 
     def get_success_url(self):
-        return reverse('shoes:shoe-detail', kwargs={'pk': self.object.pk})
+        return reverse('shoes:shoe-detail', kwargs={'slug': self.object.shoe.slug})
 
     def get_initial(self) -> dict:
         return self.object.__dict__

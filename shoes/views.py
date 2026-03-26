@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg, Count
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -10,14 +11,14 @@ from shoes.models import Shoe, Category
 
 
 # Create your views here.
-class ShoeCreateView(CreateView, SuccessMessageMixin):
+class ShoeCreateView(LoginRequiredMixin, CreateView, SuccessMessageMixin):
     model = Shoe
     form_class = ShoeFormBasic
     success_url = reverse_lazy('common:home')
     template_name = 'shoes/shoe-create-page.html'
     success_message = 'Shoe was created successfully'
 
-class ShoeEditView(UpdateView):
+class ShoeEditView(LoginRequiredMixin, UpdateView):
     model = Shoe
     form_class = ShoeEditForm
     template_name = 'shoes/shoe-edit-page.html'
@@ -25,7 +26,7 @@ class ShoeEditView(UpdateView):
     def get_success_url(self) -> str:
         return reverse('shoes:shoe-detail', kwargs={'slug': self.object.slug})
 
-class ShoeDeleteView(DeleteView):
+class ShoeDeleteView(LoginRequiredMixin, DeleteView):
     model = Shoe
     form_class = ShoeDeleteForm
     template_name = 'shoes/shoe-delete-page.html'

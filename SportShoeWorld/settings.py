@@ -45,6 +45,7 @@ PROJECT_APPS = [
     'common',
     'reviews',
     'shoes',
+    'api_shoes',
 ]
 
 INSTALLED_APPS = [
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
 ] + PROJECT_APPS
 
 MIDDLEWARE = [

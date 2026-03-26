@@ -4,6 +4,7 @@ from django.core.validators import MinLengthValidator, RegexValidator
 from django.db import models
 
 from accounts.managers import AppUserManager
+from common.vaidators import validate_image_size
 
 
 # Create your models here.
@@ -52,11 +53,14 @@ class Profile(models.Model):
         null=True,
     )
 
-    profile_picture = models.URLField(
+    profile_picture = models.ImageField(
+        upload_to='post_images/',
         blank=True,
         null=True,
+        validators=[
+            validate_image_size
+        ]
     )
-
     @property
     def get_full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"

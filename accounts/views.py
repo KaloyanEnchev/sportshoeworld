@@ -46,14 +46,13 @@ class ProfileEditView(LoginRequiredMixin, CheckUserIsOwner, UpdateView):
         )
 
 def profile_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    user = UserModel.object.get(pk=pk)
+    user = get_object_or_404(UserModel, pk=pk)
 
     if request.user.is_authenticated and request.user.pk == user.pk:
         if request.method == "POST":
             user.delete()
-            return reverse("common:home")
+            return redirect("common:home")
     else:
         return HttpResponseForbidden()
 
-
-    return render(request, 'accounts/account-delete.html')
+    return render(request, 'accounts/account-delete.html', {'object': user})

@@ -6,65 +6,44 @@
 {% endblock %}
 
 {% block content %}
-<section id="detailsPage" class="container py-5">
-    <div class="profile-card shadow-lg rounded-4 overflow-hidden">
-        <div class="row g-0">
-            <!-- Profile Image -->
-            <div class="col-md-4 profile-image-container bg-dark d-flex align-items-center justify-content-center">
-                <img
-                  src="{% if object.image.url %}{{ object.image.url }}{% else %}https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png{% endif %}"
-                  alt="{{ object.user.username }}'s Profile Image"
-                  class="img-fluid profile-img rounded-circle p-3"
-                />
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+
+        <div class="row">
+            <!-- Profile Picture -->
+            <div class="col-md-4 text-center">
+                    {% if object.profile_picture %}
+                        <img src="{{ object.profile_picture.url }}"
+                             class="img-fluid rounded-circle mb-3"
+                             alt="Profile Picture">
+                    {% else %}
+                        <div class="placeholder-image">
+                            No Image Available
+                        </div>
+                    {% endif %}
             </div>
 
             <!-- Profile Info -->
-            <div class="col-md-8 p-5 d-flex flex-column justify-content-between bg-primary">
-                <div class="profile-text text-white">
-                    <h1 class="display-5 fw-bold mb-4">{{ object.user.username }}</h1>
+            <div class="col-md-8">
+                <h3 class="mb-3">Profile Details</h3>
 
-                    <div class="info-grid row row-cols-1 row-cols-md-2 g-3">
-                        <!-- Username -->
-                        <div class="info-item col">
-                            <label class="form-label text-light fw-semibold">Username</label>
-                            <p class="mb-0">{{ object.user.username }}</p>
-                        </div>
+                <p><strong>Full Name:</strong> {{ object.get_full_name }}</p>
+                <p><strong>Email:</strong> {{ object.user.email }}</p>
+                {% if object.date_of_birth %}
+                    <p><strong>Date of Birth:</strong> {{ object.date_of_birth }}</p>
+                {% endif %}
 
-                        <!-- Email -->
-                        <div class="info-item col">
-                            <label class="form-label text-light fw-semibold">Email Address</label>
-                            <p class="mb-0">{{ object.user.email }}</p>
-                        </div>
-
-                        <!-- Age -->
-                        {% if object.age %}
-                        <div class="info-item col">
-                            <label class="form-label text-light fw-semibold">Age</label>
-                            <p class="mb-0">{{ object.age }} years old</p>
-                        </div>
-                        {% endif %}
-
-                        <!-- Bio -->
-                        {% if object.bio %}
-                        <div class="info-item col">
-                            <label class="form-label text-light fw-semibold">Bio</label>
-                            <p class="mb-0">{{ object.bio }}</p>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="action-area border-top border-light pt-4 mt-4 d-flex gap-2">
-                    <a href="{% url 'accounts:edit' pk=object.pk %}" class="btn btn-warning">
-                        <i class="bi bi-pencil me-2"></i>Edit Profile
+                <div class="mt-4">
+                    <a href="{% url 'accounts:edit' object.pk %}" class="btn btn-primary me-2">
+                        Edit Profile
                     </a>
-                    <a href="{% url 'accounts:delete' pk=object.pk %}" class="btn btn-danger">
-                        <i class="bi bi-trash me-2"></i>Delete Profile
+                    <a href="{% url 'accounts:delete' object.pk %}" class="btn btn-danger">
+                        Delete Account
                     </a>
                 </div>
             </div>
         </div>
+
     </div>
-</section>
+</div>
 {% endblock %}
