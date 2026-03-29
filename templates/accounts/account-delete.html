@@ -6,18 +6,34 @@
 {% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-sm p-4 text-center" style="max-width: 450px; width: 100%;">
+<div class="auth-page">
+    <div class="form-card delete-card">
 
-        <h3 class="mb-3 text-danger">Delete Account</h3>
-        <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+        <div class="warning-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
 
-        <form method="POST">
+        <span class="brand-logo">SPORT<span>SHOE</span></span>
+
+        <h2 class="text-danger">Delete Account</h2>
+
+        <p class="warning-text">
+            Are you sure you want to terminate your membership?
+            <strong>This action is permanent and cannot be undone.</strong>
+        </p>
+
+        <form method="POST" class="mt-4">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger w-100 mb-2">Yes, Delete</button>
+            <button type="submit" class="btn-confirm-delete">
+                Permanently Delete Account
+            </button>
         </form>
 
-        <a href="{% url 'accounts:details' object.pk %}" class="btn btn-secondary">Cancel</a>
+        <div class="text-center mt-3">
+            <a href="{% url 'accounts:details' object.pk %}" class="btn-cancel">
+                No, Keep My Account
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -242,3 +242,18 @@
 .btn-create:hover {
     opacity: 0.9;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}

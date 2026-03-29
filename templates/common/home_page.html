@@ -14,49 +14,50 @@
             <a href="{% url 'shoes:list' %}" class="cta-button btn-primary">Explore Catalog</a>
         </div>
     </header>
+    {% if shoe.object %}
+        <section class="home-section">
+            <h2 class="section-title">Choose a category</h2>
+            <nav class="category-pills">
 
-    <section class="home-section">
-        <h2 class="section-title">Choose a category</h2>
-        <nav class="category-pills">
+                <a href="{% url 'shoes:basketball-list' %}" class="pill">
+                    Basketball
+                </a>
 
-            <a href="{% url 'shoes:basketball-list' %}" class="pill">
-                Basketball
-            </a>
+                <a href="{% url 'shoes:football-list' %}" class="pill">
+                    Football
+                </a>
 
-            <a href="{% url 'shoes:football-list' %}" class="pill">
-                Football
-            </a>
+                <a href="{% url 'shoes:volleyball-list' %}" class="pill">
+                    Volleyball
+                </a>
 
-            <a href="{% url 'shoes:volleyball-list' %}" class="pill">
-                Volleyball
-            </a>
+                <a href="{% url 'shoes:handball-list' %}" class="pill">
+                    Handball
+                </a>
 
-            <a href="{% url 'shoes:handball-list' %}" class="pill">
-                Handball
-            </a>
+            </nav>
+        </section>
 
-        </nav>
-    </section>
-
-    <section class="home-section">
-        <h2 class="section-title">Most Liked</h2>
-        <div class="product-grid" role="list">
-            {% for shoe in most_liked %}
-                <article class="product-card" role="listitem">
-                    <div class="product-img-wrapper">
-                         {% if shoe.image %}
-                            <img src="{{ shoe.image.url }}" alt="{{ shoe.brand }} {{ shoe.model }}">
-                         {% endif %}
-                    </div>
-                    <div class="product-details">
-                        <h4>{{ shoe.brand }}</h4>
-                        <p>{{ shoe.model }}</p>
-                        <a href="{% url 'shoes:shoe-detail' shoe.slug %}" class="btn-outline">Details</a>
-                    </div>
-                </article>
-            {% endfor %}
-        </div>
-    </section>
+        <section class="home-section">
+            <h2 class="section-title">Most Liked</h2>
+            <div class="product-grid" role="list">
+                {% for shoe in most_liked %}
+                    <article class="product-card" role="listitem">
+                        <div class="product-img-wrapper">
+                             {% if shoe.image %}
+                                <img src="{{ shoe.image.url }}" alt="{{ shoe.brand }} {{ shoe.model }}">
+                             {% endif %}
+                        </div>
+                        <div class="product-details">
+                            <h4>{{ shoe.brand }}</h4>
+                            <p>{{ shoe.model }}</p>
+                            <a href="{% url 'shoes:shoe-detail' shoe.slug %}" class="btn-outline">Details</a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
 
     {% if newest_shoe %}
     <section class="home-section featured-section" aria-label="Newest Shoe">

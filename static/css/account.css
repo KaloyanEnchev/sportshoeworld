@@ -1,72 +1,422 @@
-/* account.css */
-.profile-card {
-    background: #ffffff;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-}
-
-.profile-image-container {
-    background: #f4f4f4;
+/* Container - Matches the light grey background of your site */
+.auth-page {
+    min-height: calc(100vh - 80px); /* Adjusts for navbar height */
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #f4f4f4;
+    padding: 40px 20px;
 }
 
-.info-item label {
-    display: block;
-    color: #6c757d;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: 1.5rem;
-}
-
-.info-item p {
-    font-size: 1.1rem;
-    margin-bottom: 0;
-    color: #212529;
-}
-
-.btn-delete {
-    color: #dc3545;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-/* Delete Page Styling */
-#deletePage .delete-card {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 20px;
-    max-width: 500px;
+/* The Card - Adding a sharper, more premium look */
+.form-card {
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     width: 100%;
+    max-width: 440px;
+    text-align: center;
 }
 
-#deletePage .btn-danger {
-    background-color: #ff4d4d;
+/* Brand Logo inside the card - Syncing colors with "SPORTSHOEWORLD" */
+.brand-logo {
+    display: block;
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    color: #1a1d23; /* Dark like your navbar */
+    text-transform: uppercase;
+}
+
+.brand-logo span {
+    color: #007bff; /* Using the bright blue from your "Register" button */
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1a1d23;
+}
+
+/* Form Groups */
+.form-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #444;
+}
+
+/* Inputs - Adding a slight grey tint to match the site's depth */
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #fafafa;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+/* Submit Button - Matches your navbar "Login" button style but bigger */
+.btn-submit {
+    background: #1a1d23; /* Matching the dark navbar background */
+    color: #fff;
     border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    background: #2d323c;
+    transform: translateY(-2px);
+}
+
+/* Links - Matches the blue Register button */
+.text-center a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+/* Update or add this to your account.css */
+
+/* This makes the Register button Blue to match your Navbar's Register button */
+.btn-submit.register-btn {
+    background: #007bff;
+}
+
+.btn-submit.register-btn:hover {
+    background: #0056b3;
+}
+
+/* Ensure the text links at the bottom match the site blue */
+.text-center a {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+/* Container Background */
+.auth-page {
+    background: radial-gradient(circle at top right, #f8f9fa, #e9ecef);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* The Profile Card */
+.form-card.profile-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 30px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.profile-header {
+    padding: 30px 40px 10px;
+    text-align: left;
+}
+
+.profile-header h2 {
+    font-weight: 800;
+    font-size: 2rem;
+    margin: 0;
+    color: #1a1d23;
+    text-transform: uppercase;
+}
+
+/* Layout Split */
+.profile-layout {
+    display: flex;
+    padding: 20px 40px 40px;
+    gap: 50px;
+}
+
+/* Sidebar / Photo Area */
+.profile-sidebar {
+    flex: 0 0 240px;
+}
+
+.image-container {
+    width: 240px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #1a1d23;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-container:hover .profile-img {
+    transform: scale(1.05);
+}
+
+.profile-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #4a5568;
+    background: #edf2f7;
+}
+
+/* Main Content Area */
+.profile-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-group {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #007bff; /* Sporty Blue */
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.info-group p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+}
+
+/* Buttons */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-submit {
+    background: #1a1d23;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    flex: 2;
     transition: all 0.3s ease;
 }
 
-#deletePage .btn-danger:hover {
-    background-color: #ff3333;
+.btn-submit:hover {
+    background: #000;
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(255, 77, 77, 0.4);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
-#deletePage .text-muted {
-    color: #999 !important;
-    line-height: 1.6;
+.btn-delete {
+    border: 2px solid #e53e3e;
+    color: #e53e3e;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    flex: 1;
+    transition: all 0.2s;
 }
 
-/* Optional: Animation for the warning icon */
-.warning-icon i {
+.btn-delete:hover {
+    background: #e53e3e;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profile-header {
+        text-align: center;
+    }
+    .info-group {
+        border-bottom: none;
+    }
+}
+
+/* Specific Edit Page Styling */
+.profile-edit-card {
+    max-width: 600px !important;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Enhancing the inputs to match the Detail page */
+.edit-form .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
+    background: #fcfcfc;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.edit-form .form-group input:focus {
+    border-color: #007bff;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+/* File Input Styling */
+.custom-file-upload {
+    padding: 10px;
+    background: #f8f9fa;
+    border: 2px dashed #cbd5e0;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Button Refinement */
+.btn-cancel {
+    display: inline-block;
+    padding: 14px 25px;
+    color: #718096;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-align: center;
+    transition: color 0.2s;
+    line-height: 1.5; /* Align with submit button height */
+}
+
+.btn-cancel:hover {
+    color: #1a1d23;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 500px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Delete Account Specifics */
+.delete-card {
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    text-align: center;
+}
+
+/* Red accent bar for the delete page */
+.delete-card::before {
+    background: linear-gradient(90deg, #dc3545, #ff4b2b) !important;
+}
+
+.warning-icon {
+    font-size: 3rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
     animation: pulse 2s infinite;
 }
 
+.warning-text {
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.btn-confirm-delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-confirm-delete:hover {
+    background: #a71d2a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(220, 53, 69, 0.2);
+}
+
+/* Subtle pulse for the warning icon */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.1); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
+}
+
+/* Reuse the btn-cancel from the Edit page */
+.btn-cancel {
+    display: inline-block;
+    padding: 10px;
+    color: #718096;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.btn-cancel:hover {
+    color: #1a1d23;
+    text-decoration: underline;
 }

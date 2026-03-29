@@ -6,33 +6,52 @@
 {% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-sm p-4" style="max-width: 500px; width: 100%;">
-        <h3 class="text-center mb-4">Register</h3>
+<div class="auth-page">
+    <div class="form-card">
+
+        <span class="brand-logo">
+            SPORT<span>SHOE</span>
+        </span>
+
+        <h2 class="mb-4">Register</h2>
 
         <form method="POST">
             {% csrf_token %}
 
-            <div class="mb-3">
-                <label class="form-label">Email</label>
+            <div class="form-group mb-3">
+                <label>Email</label>
                 {{ form.email }}
+                {% for error in form.email.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Password</label>
+            <div class="form-group mb-3">
+                <label>Password</label>
                 {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Confirm Password</label>
+            <div class="form-group mb-3">
+                <label>Confirm Password</label>
                 {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
             </div>
 
-            <button type="submit" class="btn btn-success w-100">Register</button>
+            <button type="submit" class="btn-submit w-100">
+                Create Account
+            </button>
         </form>
 
         <div class="text-center mt-3">
-            <a href="{% url 'accounts:login' %}">Already have an account?</a>
+            <small>
+                Already have an account?
+                <a href="{% url 'accounts:login' %}">Login</a>
+            </small>
         </div>
     </div>
 </div>

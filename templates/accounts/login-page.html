@@ -7,49 +7,49 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<div class="auth-page">
+    <div class="form-card">
 
-            <div class="card shadow-sm p-4">
-                <h2 class="text-center mb-4">Login</h2>
+        <span class="brand-logo">
+            SPORTSHOE<span>WORLD</span>
+        </span>
 
-                <form method="post">
-                    {% csrf_token %}
+        <h2 class="mb-4">Login</h2>
 
-                    {% for field in form %}
-                        <div class="mb-3">
-                            <label class="form-label">{{ field.label }}</label>
-                            {{ field }}
+        <form method="post">
+            {% csrf_token %}
 
-                            {% for error in field.errors %}
-                                <div class="text-danger small">
-                                    {{ error }}
-                                </div>
-                            {% endfor %}
+            {% for field in form %}
+                <div class="form-group mb-3">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <div class="text-danger small">
+                            {{ error }}
                         </div>
                     {% endfor %}
-
-                    {% if form.non_field_errors %}
-                        <div class="text-danger mb-3">
-                            {{ form.non_field_errors }}
-                        </div>
-                    {% endif %}
-
-                    <button type="submit" class="btn btn-success w-100">
-                        Login
-                    </button>
-                </form>
-
-                <div class="text-center mt-3">
-                    <p class="mb-0">
-                        Don't have an account?
-                        <a href="{% url 'accounts:register' %}">Register</a>
-                    </p>
                 </div>
-            </div>
+            {% endfor %}
 
+            {% if form.non_field_errors %}
+                <div class="text-danger mb-3">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="btn-submit w-100">
+                Login
+            </button>
+        </form>
+
+        <div class="text-center mt-3">
+            <small>
+                Don't have an account?
+                <a href="{% url 'accounts:register' %}">Register</a>
+            </small>
         </div>
+
     </div>
 </div>
 
