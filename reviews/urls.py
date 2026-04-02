@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:pk>/', views.ReviewDetailView.as_view(), name='detail'),
     path('<int:pk>/edit', views.ReviewEditView.as_view(), name='edit'),
     path('<int:pk>/delete', views.ReviewDeleteView.as_view(), name='delete'),
+    path('normalize/<int:pk>/', views.normalize_review, name='normalize-review'),
 ]

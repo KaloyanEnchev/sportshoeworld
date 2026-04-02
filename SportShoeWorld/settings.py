@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'celery',
 ] + PROJECT_APPS
 
 MIDDLEWARE = [
@@ -150,6 +152,29 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+DEFAULT_FROM_EMAIL = 'no-reply@ads.com'
+
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+
+CELERY_TASK_ROUTES = {
+    'reviews.tasks.process_review_task': {'queue': 'heavy'},
+    'reviews.tasks.normalize_review_text': {'queue': 'light'},
+    'reviews.tasks.delete_old_reviews': {'queue': 'default'},
+}
+
+CELERY_BEAT_SCHEDULE = {
+    'delete-old-reviews': {
+        'task': 'reviews.tasks.delete_old_reviews',
+        'schedule': crontab(minute='*/2'),
+        'options': {'queue': 'default'},
+    },
+}
 
 AUTH_USER_MODEL = "accounts.AppUser"
 LOGIN_REDIRECT_URL = 'common:home'

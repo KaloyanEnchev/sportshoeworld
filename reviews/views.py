@@ -1,9 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from reviews.forms import ReviewForm, ReviewDeleteForm
 from reviews.models import Review
+from reviews.tasks import enqueue_review_processing
 
 
 # Create your views here.
@@ -12,6 +16,25 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     form_class = ReviewForm
     success_url = reverse_lazy('common:home')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        transaction.on_commit(
+            lambda: enqueue_review_processing(self.object.id, 'heavy')
+        )
+
+        return response
+
+def normalize_review(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+
+    try:
+        enqueue_review_processing(review.pk, 'light')
+        messages.success(request, 'Review normalization queued!')
+    except Exception as e:
+        messages.error(request, f'Error: {e}')
+
+    return redirect('reviews:detail', pk=pk)
 
 class ReviewList(ListView):
     model = Review
