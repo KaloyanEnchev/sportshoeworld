@@ -1,0 +1,259 @@
+:root {
+    --primary: #007bff;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --shadow: 0 4px 15px rgba(0,0,0,0.08);
+    --border-radius: 12px;
+}
+
+/* Wrapper */
+.home-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Hero Banner */
+.hero-banner {
+    background: linear-gradient(135deg, var(--dark) 0%, #333 100%);
+    color: white;
+    padding: 5rem 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hero-banner h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-banner p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.hero-stats {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary);
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+/* Section Titles */
+.home-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    text-align: center;
+}
+
+/* Category Pills */
+.category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.category-pills .pill {
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--gray);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.category-pills .pill:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Featured Card */
+.featured-card {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+}
+
+.featured-image {
+    flex: 1;
+    min-width: 300px;
+    max-height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-new {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.featured-info {
+    flex: 1;
+    padding: 2rem;
+}
+
+.featured-info h3 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.featured-info .price-tag {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.featured-info .description {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    color: white;
+    background-color: var(--primary);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 250px);  /* exactly 3 fixed-width columns */
+    gap: 2rem;
+    justify-content: center;                   /* center the whole grid */
+    max-width: 800px;                          /* 3 columns * 250px + gaps */
+    margin: 0 auto;                            /* center container on page */
+}
+
+.empty-message {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color: var(--gray);
+}
+
+.product-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-img-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.8rem;
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-details h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.product-details p {
+    margin: 0.2rem 0 0.5rem;
+    color: var(--gray);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    text-decoration: none;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 50px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.create-wrapper {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-create {
+    background: var(--primary);
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: 0.2s ease;
+}
+
+.btn-create:hover {
+    opacity: 0.9;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
