@@ -31,12 +31,27 @@ Environment SetupBashpython -m venv venv
 # macOS/Linux:
 source venv/bin/activate   
 # Windows:
-venv\Scripts\activate      
+venv\Scripts\activate 
+
 Install Dependencies
-Bashpip install -r requirements.txt
-ConfigurationCopy .env.template to .env.Update your Database credentials and Secret Key.Initialize DatabaseBashpython manage.py migrate
+
+pip install -r requirements.txt
+
+Configuration
+Copy .env.template to .env.
+
+Update your Database credentials and Secret Key.
+
+Initialize Database
+
+python manage.py migrate
+
 python manage.py createsuperuser
-Run the ApplicationServer:
+
+Run the Application Server:
+
 python manage.py runserver
+
 Celery Worker: celery -A SportShoeWorld worker -l info
+
 Celery Beat: celery -A SportShoeWorld beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler📖 
