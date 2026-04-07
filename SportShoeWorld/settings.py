@@ -36,9 +36,8 @@ else:
     DEBUG = True
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net",
+    'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
+    'localhost',
 ]
 
 # Application definition
