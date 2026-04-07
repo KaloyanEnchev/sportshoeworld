@@ -73,6 +73,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ROOT_URLCONF = 'SportShoeWorld.urls'
