@@ -1,54 +1,42 @@
-# SportShoeWorld
+# SportShoeWorld 👟
 
-SportShoeWorld is a Django-powered web application for managing a sports shoe catalog. It features modular architecture, a RESTful API, and background task processing with Celery.
+SportShoeWorld is a Django-based web application designed for managing and showcasing a comprehensive catalog of sports shoes. It features a robust backend, user engagement tools, and a modern management interface.
 
-## Key Features
-- **Shoe Catalog:** Browse and filter by category (Basketball, Football, etc.) and gender.
-- **User Accounts:** Secure registration, login, and profile management.
-- **Reviews:** User-driven rating and review system for products.
-- **REST API:** Full CRUD operations for shoe data via Django REST Framework.
-- **Admin Panel:** Modern management interface using `django-unfold`.
-- **Background Tasks:** Asynchronous processing powered by Celery and Redis.
+---
 
-## Quick Setup
+### ✨ Features
+* **Catalog Management:** Browse shoes with detailed info (price, description, images).
+* **Smart Filtering:** Filter by sport (Basketball, Volleyball, Handball, Football) and gender.
+* **User System:** Full registration, login, and review functionality.
+* **API Access:** Built-in RESTful API for programmatic integration.
+* **Modern Admin:** Responsive and sleek dashboard powered by `django-unfold`.
+* **Performance:** Asynchronous task processing via Celery and Redis.
 
-### Prerequisites
-- Python 3.8+, PostgreSQL, Redis, Git.
+### 🛠 Technologies
+* **Backend:** Python 3.8+, Django 5.x, Django REST Framework
+* **Task Queue:** Celery & Redis
+* **Database:** PostgreSQL (`psycopg2-binary`)
+* **Frontend:** HTML5, CSS3
+* **UI/UX:** django-unfold
 
-### Installation
-1. **Clone & Enter:**
+---
+
+### 🚀 Setup Guide
+
+1. **Clone & Navigate**
    ```bash
-   git clone https://github.com/KaloyanEnchev/sportshoeworld.git && cd SportShoeWorld
-   ```
-2. **Environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-3. **Configure `.env`:**
-   Create a `.env` file based on `.env.template` with your `DB_*` and `SECRET_KEY` values.
-4. **Database & Admin:**
-   ```bash
-   python manage.py migrate
-   python manage.py createsuperuser
-   ```
-5. **Run Services (Separate Terminals):**
-   - Server: `python manage.py runserver`
-   - Worker: `celery -A SportShoeWorld worker -l info`
-
-## Project Structure
-- `accounts/`: User authentication and profiles.
-- `shoes/`: Core catalog and shoe management.
-- `api_shoes/`: REST API endpoints.
-- `reviews/`: User feedback and ratings.
-- `SportShoeWorld/`: Core settings and Celery configuration.
-
-## API Endpoints
-- `GET /api/shoes/`: List all shoes.
-- `POST /api/shoes/`: Add a new shoe.
-- `GET /api/shoes/<id>/`: View shoe details.
-- `GET /api/shoes/stats/`: View shoe catalog statistics.
-
-## Usage
-Access the web app at `http://127.0.0.1:8000` and the admin panel at `http://127.0.0.1:8000/admin/`.
+   git clone [https://github.com/KaloyanEnchev/sportshoeworld.git](https://github.com/KaloyanEnchev/sportshoeworld.git)
+   cd SportShoeWorld
+Environment SetupBashpython -m venv venv
+# macOS/Linux:
+source venv/bin/activate   
+# Windows:
+venv\Scripts\activate      
+Install Dependencies
+Bashpip install -r requirements.txt
+ConfigurationCopy .env.template to .env.Update your Database credentials and Secret Key.Initialize DatabaseBashpython manage.py migrate
+python manage.py createsuperuser
+Run the ApplicationServer:
+python manage.py runserver
+Celery Worker: celery -A SportShoeWorld worker -l info
+Celery Beat: celery -A SportShoeWorld beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler📖 
