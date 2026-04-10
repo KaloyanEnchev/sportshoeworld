@@ -33,16 +33,16 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
     '.azurewebsites.net',
-    '169.254.130.5',
+    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.azurewebsites.net",
+    "https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net",
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
-
+SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
