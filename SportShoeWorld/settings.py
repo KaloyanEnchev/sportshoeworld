@@ -189,3 +189,5 @@ AUTH_USER_MODEL = "accounts.AppUser"
 LOGIN_REDIRECT_URL = 'common:home'
 LOGOUT_REDIRECT_URL = 'accounts:login'
 LOGIN_URL = 'accounts:login'
+
+print("CSRF TRUSTED:", CSRF_TRUSTED_ORIGINS)
