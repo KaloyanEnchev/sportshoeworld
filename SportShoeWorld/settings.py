@@ -78,6 +78,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
 ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ROOT_URLCONF = 'SportShoeWorld.urls'
