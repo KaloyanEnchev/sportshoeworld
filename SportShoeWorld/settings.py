@@ -32,10 +32,12 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
+    '.azurewebsites.net',
+    '*'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
+    "https://*.azurewebsites.net",
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
