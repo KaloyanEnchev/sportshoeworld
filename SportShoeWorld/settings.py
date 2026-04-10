@@ -28,18 +28,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
-
-if DEBUG is False:
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
-    'localhost',
-    '127.0.0.1'
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Application definition
 PROJECT_APPS = [
@@ -73,14 +76,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
-]
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
