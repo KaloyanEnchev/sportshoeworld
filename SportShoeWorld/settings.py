@@ -38,6 +38,7 @@ else:
 ALLOWED_HOSTS = [
     'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
     'localhost',
+    '127.0.0.1'
 ]
 
 # Application definition
