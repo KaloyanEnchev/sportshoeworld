@@ -14,6 +14,12 @@ from common.mixins import CheckUserIsOwner
 UserModel = get_user_model()
 
 class RegisterAppUserView(CreateView):
+    def post(self, request, *args, **kwargs):
+        print("ORIGIN:", request.META.get("HTTP_ORIGIN"))
+        print("HOST:", request.get_host())
+
+        return super().post(request, *args, **kwargs)
+
     model = UserModel
     form_class = AppUserCreationForm
     template_name = 'accounts/register-page.html'
@@ -26,6 +32,7 @@ class RegisterAppUserView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('accounts:login')
+
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
@@ -46,6 +53,7 @@ class ProfileEditView(LoginRequiredMixin, CheckUserIsOwner, UpdateView):
         )
 
 def profile_delete(request: HttpRequest, pk: int) -> HttpResponse:
+
     user = get_object_or_404(UserModel, pk=pk)
 
     if request.user.is_authenticated and request.user.pk == user.pk:
