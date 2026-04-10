@@ -33,7 +33,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
     '.azurewebsites.net',
-    '*'
+    '169.254.130.5',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
