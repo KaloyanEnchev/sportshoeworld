@@ -28,22 +28,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
     "sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net",
 ]
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-SECURE_SSL_REDIRECT = True
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
 
 # Application definition
 PROJECT_APPS = [
@@ -166,7 +161,7 @@ STORAGES = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
-DEFAULT_FROM_EMAIL = 'no-reply@ads.com'
+DEFAULT_FROM_EMAIL = 'no-reply@sportshoeworld.com'
 
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
@@ -191,4 +186,3 @@ LOGIN_REDIRECT_URL = 'common:home'
 LOGOUT_REDIRECT_URL = 'accounts:login'
 LOGIN_URL = 'accounts:login'
 
-print("CSRF TRUSTED:", CSRF_TRUSTED_ORIGINS)
