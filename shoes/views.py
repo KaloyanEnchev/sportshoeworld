@@ -14,17 +14,9 @@ from shoes.models import Shoe, Category
 class ShoeCreateView(LoginRequiredMixin, CreateView, SuccessMessageMixin):
     model = Shoe
     form_class = ShoeFormBasic
-    template_name = 'shoes/shoe-create-page.html'
     success_url = reverse_lazy('common:home')
+    template_name = 'shoes/shoe-create-page.html'
     success_message = 'Shoe was created successfully'
-
-    def form_valid(self, form):
-        print("SHOE FORM VALID")
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        print("SHOE FORM ERRORS:", form.errors)
-        return super().form_invalid(form)
 
 class ShoeEditView(LoginRequiredMixin, UpdateView):
     model = Shoe

@@ -30,14 +30,15 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    "sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net",
-]
+if DEBUG is False:
+    DEBUG = False
+else:
+    DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net",
+ALLOWED_HOSTS = [
+    'sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
+    'localhost',
+    '127.0.0.1'
 ]
 
 # Application definition
@@ -71,6 +72,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -161,7 +166,7 @@ STORAGES = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
-DEFAULT_FROM_EMAIL = 'no-reply@sportshoeworld.com'
+DEFAULT_FROM_EMAIL = 'no-reply@ads.com'
 
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
@@ -185,4 +190,3 @@ AUTH_USER_MODEL = "accounts.AppUser"
 LOGIN_REDIRECT_URL = 'common:home'
 LOGOUT_REDIRECT_URL = 'accounts:login'
 LOGIN_URL = 'accounts:login'
-
