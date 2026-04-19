@@ -4,7 +4,8 @@
 
 ---
 
-## Deployed application link: https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net/
+## Deployed application link: 
+https://sportshoeworld-dgccg4epbbcpgxbu.swedencentral-01.azurewebsites.net/
 
 ---
 
